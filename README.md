@@ -1,73 +1,146 @@
-# simple-webserver-python
- 
-Let me explain how I built this simple web server script and how it works:
-What the Script Does
-This Python script creates a customizable web server that:
+# Simple Python Web Server
 
-Serves static files from a directory (HTML, CSS, JavaScript, etc.)
-Provides API testing endpoints that return JSON responses
-Handles both GET and POST requests
-Can be configured for different ports and directories
+A lightweight, customizable HTTP server for local development and API testing.
 
-How to Use It
+## Features
 
-Save the script as simple_server.py
-Run it from the command line:
-Copypython simple_server.py
+- 📁 Serves static files (HTML, CSS, JavaScript, etc.)
+- 🔌 Handles both GET and POST requests
+- 🧪 Includes built-in API testing endpoints
+- 📋 Returns detailed request information for debugging
+- ⚙️ Configurable port and directory settings
 
-Access it in your browser at http://localhost:8000
+## Installation
 
-You can also:
+No installation required! Just download the script and run it with Python 3.x.
 
-Change the port: python simple_server.py --port 8080
-Serve files from a specific directory: python simple_server.py --directory /path/to/your/files
+```bash
+# Clone this repository or download the script directly
+git clone https://github.com/yourusername/simple-python-webserver.git
+cd simple-python-webserver
 
-Key Features and Testing
+# Run the server
+python simple_server.py
+```
 
-Static file serving: Put HTML/CSS/JS files in the same directory and access them by name
-API test endpoint: Try http://localhost:8000/api/test?name=value&another=parameter
-Echo endpoint: Visit http://localhost:8000/echo to see details about your request
-POST handling: Use tools like Postman or curl to send POST requests to /api/test
+## Usage
 
-Code Breakdown
-Let me walk through how I built this script:
+### Basic Usage
 
-Imported necessary modules:
+Run the server with default settings (port 8000, current directory):
 
-http.server: Python's built-in HTTP server library
-socketserver: Handles the network connections
-os: For directory operations
-argparse: For command-line arguments
-json: For working with JSON data
-urllib.parse: For parsing URLs and query parameters
+```bash
+python simple_server.py
+```
 
+### Command Line Options
 
-Created a custom request handler class:
+```bash
+# Change the port
+python simple_server.py --port 8080
 
-Extends SimpleHTTPRequestHandler to inherit file-serving capabilities
-Overrides do_GET to handle GET requests
-Overrides do_POST to handle POST requests
-Adds special endpoints for API testing
+# Serve files from a specific directory
+python simple_server.py --directory /path/to/your/files
 
+# Combine options
+python simple_server.py --port 3000 --directory ./website
+```
 
-Added the main server function:
+### Help
 
-Sets up the TCP server with our handler
-Configures the port and directory
-Starts the server with error handling
+```bash
+python simple_server.py --help
+```
 
+## Endpoints
 
-Implemented command-line parsing:
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Serves files from the specified directory |
+| `/api/test` | GET | Returns a JSON response with query parameters and request info |
+| `/api/test` | POST | Accepts and echoes back POST data as JSON |
+| `/echo` | GET | Returns detailed information about the incoming request |
 
-Uses argparse to handle command-line options
-Provides help text for users
+## Examples
 
+### Serving Static Files
 
+1. Create an `index.html` file in your directory
+2. Run the server
+3. Open `http://localhost:8000` in your browser
 
-Learning Points
+### Testing GET Requests
 
-Object-Oriented Programming: The script uses class inheritance to extend built-in functionality
-HTTP Protocol: You can see how HTTP requests and responses are structured
-JSON APIs: The script demonstrates creating simple JSON responses
-Command-line Interfaces: Shows how to make a configurable script
-Error Handling: Includes try/except blocks for graceful error handling
+Try accessing:
+```
+http://localhost:8000/api/test?name=John&role=developer
+```
+
+You'll receive a JSON response like:
+```json
+{
+  "message": "API test successful",
+  "query_parameters": {
+    "name": ["John"],
+    "role": ["developer"]
+  },
+  "method": "GET",
+  "headers": {
+    "User-Agent": "Mozilla/5.0...",
+    ...
+  }
+}
+```
+
+### Testing POST Requests
+
+Using curl:
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"name":"John","age":30}' http://localhost:8000/api/test
+```
+
+Response:
+```json
+{
+  "message": "POST request received",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json",
+    ...
+  },
+  "body": {
+    "name": "John",
+    "age": 30
+  }
+}
+```
+
+## How It Works
+
+The server builds on Python's built-in `http.server` module, extending it with:
+
+1. Custom request handling for API endpoints
+2. JSON response formatting
+3. Support for query parameters and POST data
+4. Command-line configuration options
+
+## Use Cases
+
+- Local web development testing
+- Mocking APIs during frontend development
+- Learning HTTP concepts and web server functionality
+- Simple file sharing on a local network
+- Testing webhooks locally
+
+## Requirements
+
+- Python 3.6 or higher
+- No external dependencies required
+
+## License
+
+MIT
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
