@@ -2,6 +2,7 @@
  
 Let me explain how I built this simple web server script and how it works:
 What the Script Does
+
 This Python script creates a customizable web server that:
 
 Serves static files from a directory (HTML, CSS, JavaScript, etc.)
