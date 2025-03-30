@@ -1,46 +1,26 @@
-# Simple Python Web Server
+# simple-webserver-python
+ 
+Let me explain how I built this simple web server script and how it works:
+What the Script Does
+This Python script creates a customizable web server that:
 
-A lightweight, customizable HTTP server for local development and API testing.
+Serves static files from a directory (HTML, CSS, JavaScript, etc.)
+Provides API testing endpoints that return JSON responses
+Handles both GET and POST requests
+Can be configured for different ports and directories
 
-## Features
+How to Use It
 
-- 📁 Serves static files (HTML, CSS, JavaScript, etc.)
-- 🔌 Handles both GET and POST requests
-- 🧪 Includes built-in API testing endpoints
-- 📋 Returns detailed request information for debugging
-- ⚙️ Configurable port and directory settings
+Save the script as simple_server.py
+Run it from the command line:
+Copypython simple_server.py
 
-## Installation
+Access it in your browser at http://localhost:8000
 
-No installation required! Just download the script and run it with Python 3.x.
+You can also:
 
-```bash
-# Clone this repository or download the script directly
-git clone https://github.com/yourusername/simple-python-webserver.git
-cd simple-python-webserver
-
-# Run the server
-python simple_server.py
-```
-
-## Usage
-
-### Basic Usage
-
-Run the server with default settings (port 8000, current directory):
-
-```bash
-python simple_server.py
-```
-
-### Command Line Options
-
-```bash
-# Change the port
-python simple_server.py --port 8080
-
-# Serve files from a specific directory
-python simple_server.py --directory /path/to/your/files
+Change the port: python simple_server.py --port 8080
+Serve files from a specific directory: python simple_server.py --directory /path/to/your/files
 
 # Combine options
 python simple_server.py --port 3000 --directory ./website
